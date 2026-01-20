@@ -1,79 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mineverse</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="font-sans text-gray-800">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WinBlue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- Navbar -->
-    <header class="bg-white shadow">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">Mineverse</h1>
-        <nav class="space-x-4">
-          <a href="#" class="text-gray-600 hover:text-blue-600">Beranda</a>
-          <a href="#tentang" class="text-gray-600 hover:text-blue-600">Tentang</a>
-          <a href="#layanan" class="text-gray-600 hover:text-blue-600">Layanan</a>
-          <a href="#kontak" class="text-gray-600 hover:text-blue-600">Kontak</a>
-        </nav>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+
+      <div class="brand">
+        <img src="logo.png" alt="Mineverse Logo">
+        <span>Mineverse</span>
       </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="bg-blue-600 text-white py-20 text-center">
-      <div class="max-w-3xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-4">Kami lebih dari sekedar komunitas Minecraft biasa.</h2>
-        <p class="text-lg mb-6">Kami hadir untuk menjadi sumber informasi seputar Minecraft terbaik untuk anda.</p>
-        <a href="#kontak" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">Hubungi Kami</a>
-      </div>
-    </section>
+      <nav>
+        <a href="#start">Start</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#youtube" class="nav-btn">YouTube</a>
+      </nav>
 
-    <!-- Tentang Kami -->
-    <section id="tentang" class="py-20 bg-gray-100">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-bold text-gray-800 mb-4">Tentang Kami</h3>
-        <p class="text-gray-600 text-lg">NamaPerusahaan adalah perusahaan teknologi yang berfokus pada solusi digital modern. Dengan tim yang berpengalaman, kami siap membantu bisnis Anda berkembang di era digital.</p>
-      </div>
-    </section>
+    </div>
+  </header>
 
-    <!-- Layanan -->
-    <section id="layanan" class="py-20 bg-white">
-      <div class="max-w-6xl mx-auto px-6">
-        <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Layanan Kami</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="text-xl font-semibold mb-2">Pengembangan Web</h4>
-            <p class="text-gray-600">Membuat website yang responsif, modern, dan sesuai kebutuhan bisnis Anda.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="text-xl font-semibold mb-2">Aplikasi Mobile</h4>
-            <p class="text-gray-600">Bangun aplikasi iOS & Android yang efisien dan user-friendly.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="text-xl font-semibold mb-2">Digital Marketing</h4>
-            <p class="text-gray-600">Strategi pemasaran digital yang efektif untuk menjangkau lebih banyak pelanggan.</p>
-          </div>
+  <!-- HERO -->
+  <section id="start" class="hero">
+    <div class="container hero-wrap">
+      <h1>Selamat datang<br>di Mineverse.</h1>
+      <p>UI modern dengan pendekatan bersih dan nyaman ala Windows 11.</p>
+      <a href="#about" class="btn-main">Get Started</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container about-wrap">
+      <h2>About Us</h2>
+      <p>
+        WinBlue membangun produk digital dengan desain sederhana,
+        fokus pada kenyamanan pengguna dan konsistensi visual.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Our Features</h2>
+
+      <div class="feature-row">
+
+        <div class="feature-card">
+          <img src="https://via.placeholder.com/400x220" alt="">
+          <h3>Performance</h3>
+          <p>Respons cepat dan stabil.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- Kontak -->
-    <section id="kontak" class="py-20 bg-blue-50">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h3 class="text-3xl font-bold text-gray-800 mb-6">Hubungi Kami</h3>
-        <p class="text-gray-600 mb-6">Tertarik bekerja sama atau punya pertanyaan? Kirimkan email ke <a href="mailto:info@namaperusahaan.com" class="text-blue-600 font-medium">info@namaperusahaan.com</a></p>
-        <a href="mailto:info@namaperusahaan.com" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Kirim Email</a>
-      </div>
-    </section>
+        <div class="feature-card">
+          <img src="https://via.placeholder.com/400x220" alt="">
+          <h3>Security</h3>
+          <p>Keamanan sistem terjaga.</p>
+        </div>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t py-6 mt-10">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
-        © 2025 NamaPerusahaan. Semua Hak Dilindungi.
-      </div>
-    </footer>
+        <div class="feature-card">
+          <img src="https://via.placeholder.com/400x220" alt="">
+          <h3>Clean UI</h3>
+          <p>Tampilan nyaman di mata.</p>
+        </div>
 
-  </body>
+        <div class="feature-card">
+          <img src="https://via.placeholder.com/400x220" alt="">
+          <h3>Scalable</h3>
+          <p>Mudah dikembangkan.</p>
+        </div>
+
+        <div class="feature-card">
+          <img src="https://via.placeholder.com/400x220" alt="">
+          <h3>Support</h3>
+          <p>Dukungan berkelanjutan.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE -->
+  <section id="youtube" class="youtube">
+    <div class="container youtube-wrap">
+      <h2>Visit Our YouTube</h2>
+      <p>Konten edukasi & update produk kami.</p>
+      <a href="https://www.youtube.com" target="_blank" class="btn-youtube">
+        Open YouTube
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 WinBlue</p>
+  </footer>
+
+</body>
 </html>
