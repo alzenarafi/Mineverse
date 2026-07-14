@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mineverse | Members</title>
+    <title>Mineverse | Branch Alpha</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. INITIAL SETTINGS & CYBER DESIGN SYSTEM --- */
+        /* --- 1. INITIAL SETTINGS & RED CYBER DESIGN SYSTEM --- */
         * {
             margin: 0;
             padding: 0;
@@ -26,30 +26,27 @@
             --text-main: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.5);
             --text-link: rgba(255, 255, 255, 0.6);
-            --mineverse-blue: #34E6E6;
-            --mineverse-red: #FF3366;
-            --mineverse-glow: rgba(52, 230, 230, 0.12);
+            --mineverse-red: #FF2A2A; 
+            --mineverse-glow: rgba(255, 42, 42, 0.12);
             --border-color: rgba(255, 255, 255, 0.05);
-            --border-hover: rgba(52, 230, 230, 0.4);
-            --border-hover-red: rgba(255, 51, 102, 0.4);
+            --border-hover: rgba(255, 42, 42, 0.3);
+            --text-grey: rgba(255, 255, 255, 0.4);
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            padding-top: 120px;
             
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 48px 48px;
         }
 
-        /* System Animasi Masuk (Fade & Rise) */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(25px);
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -58,12 +55,12 @@
             transform: translateY(0);
         }
 
-        /* Round neon cursor particle effect */
         .cursor-particle {
             position: fixed;
-            width: 6px; height: 6px;
-            background-color: var(--mineverse-blue);
-            box-shadow: 0 0 8px var(--mineverse-blue);
+            width: 6px;
+            height: 6px;
+            background-color: var(--mineverse-red);
+            box-shadow: 0 0 8px var(--mineverse-red);
             border-radius: 50%; 
             pointer-events: none;
             z-index: 9999;
@@ -78,253 +75,509 @@
 
         /* --- 2. PREMIUM HEADER NAVBAR --- */
         header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background-color: rgba(3, 3, 3, 0.75);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(3, 3, 3, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
             border-bottom: 1px solid var(--border-color);
         }
 
-        header::after {
-            content: ''; position: absolute; top: -40px; left: 25%; width: 50%; height: 120px;
-            background: radial-gradient(ellipse at center, var(--mineverse-glow) 0%, transparent 70%);
-            z-index: -1; pointer-events: none; filter: blur(10px);
-        }
-
-        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-        .logo-img { width: 24px; height: 24px; object-fit: contain; }
-        .logo-text { font-size: 16px; font-weight: 700; letter-spacing: -0.5px; }
-        nav ul { display: flex; list-style: none; gap: 28px; }
-        nav ul li a { text-decoration: none; color: var(--text-link); font-size: 13.5px; font-weight: 500; transition: color 0.3s ease; }
-        nav ul li a:hover, nav ul li a.active { color: var(--text-main); }
-        .nav-btn { background: var(--mineverse-blue); color: #000; padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(52, 230, 230, 0.2); }
-        .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(52, 230, 230, 0.4); }
-
-        /* --- 3. TITLE HEADER & IMAGE-MATCHING SECTION TITLE --- */
-        .member-container { padding: 40px 8% 80px 8%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-        .member-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; position: relative; z-index: 5; }
-        .member-tag { background-color: rgba(52, 230, 230, 0.05); border: 1px solid rgba(52, 230, 230, 0.15); color: var(--mineverse-blue); padding: 4px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 50px; margin-bottom: 25px; display: inline-block; }
-        .member-header h1 { font-size: 42px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.2; text-transform: uppercase; margin-bottom: 16px; }
-        .member-header p { color: var(--text-muted); font-size: 15px; line-height: 1.6; }
-
-        /* Title Group dengan Badge Total di Dalamnya */
-        .section-title-wrapper {
-            display: inline-flex;
+        .logo-container {
+            display: flex;
             align-items: center;
             gap: 10px;
-            margin: 50px 0 25px 0;
+            text-decoration: none;
+            color: #fff;
         }
 
-        .section-title-badge {
-            display: inline-block;
-            padding: 6px 20px;
+        .logo-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-link);
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-btn {
+            background: var(--mineverse-red);
+            color: #fff;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.2);
         }
 
-        .section-title-badge.active-section {
-            background-color: rgba(52, 230, 230, 0.04);
-            border: 1px solid rgba(52, 230, 230, 0.15);
-            color: var(--mineverse-blue);
+        /* --- 3. REUSABLE SYSTEM --- */
+        section {
+            padding: 120px 8% 40px 8%;
+            position: relative;
+            z-index: 2;
         }
 
-        .section-title-badge.nonactive-section {
-            background-color: rgba(255, 51, 102, 0.04);
-            border: 1px solid rgba(255, 51, 102, 0.15);
+        .section-tag {
+            background-color: rgba(255, 42, 42, 0.05);
+            border: 1px solid rgba(255, 42, 42, 0.15);
             color: var(--mineverse-red);
-        }
-
-        /* Badge Total Bergaya Minimalis */
-        .category-count {
+            padding: 4px 14px;
             font-size: 11px;
             font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .section-tag.grey-tag {
             background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 4px 12px;
-            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-grey);
         }
 
-        .category-count.active-count {
-            color: rgba(52, 230, 230, 0.7);
-            border-color: rgba(52, 230, 230, 0.15);
+        /* --- 4. BRANCH HERO (MOVING LOGO PNG) --- */
+        .branch-hero-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            padding-top: 60px;
         }
 
-        .category-count.nonactive-count {
-            color: rgba(255, 51, 102, 0.7);
-            border-color: rgba(255, 51, 102, 0.15);
+        .branch-text-side {
+            flex: 1.2;
         }
 
-        /* --- 4. MEMBER CARD LAYOUT --- */
-        .member-grid {
+        .branch-text-side h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .branch-text-side h1 span {
+            background: linear-gradient(135deg, #fff 40%, var(--mineverse-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .branch-text-side p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 30px;
+        }
+
+        .branch-visual-side {
+            flex: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .branch-floating-logo {
+            width: 75%;
+            max-width: 280px;
+            object-fit: contain; 
+            filter: drop-shadow(0 10px 25px rgba(255, 42, 42, 0.15));
+            animation: floatLogo 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatLogo {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* --- 5. STATS SECTION (3 CARDS DENGAN ANIMASI COUNTER) --- */
+        .branch-stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-            gap: 30px;
-            position: relative;
-            z-index: 5;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
         }
 
-        .member-card {
+        .about-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 16px;
-            height: 360px;
+            padding: 30px;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+            background-color: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .about-card h3 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--mineverse-red);
+            margin-bottom: 6px;
+            letter-spacing: -1px;
+        }
+
+        .about-card p {
+            font-size: 12px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        /* --- 6. 3-COLUMN SECTIONS (SERVER ACTIVE & SELESAI) --- */
+        .server-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 1fr; /* Memaksa semua baris berikutnya memiliki tinggi yang sama rapi */
+            align-items: start; 
+            gap: 25px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .server-premium-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                        border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                        box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s ease;
+            height: 100%; /* Menyamakan tinggi card agar presisi */
         }
 
-        .member-card.active-card:hover {
-            transform: translateY(-8px);
+        .server-premium-card:hover {
             border-color: var(--border-hover);
-            box-shadow: 0 12px 30px rgba(52, 230, 230, 0.08);
             background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
         }
 
-        .member-card.nonactive-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover-red);
-            box-shadow: 0 12px 30px rgba(255, 51, 102, 0.08);
-            background-color: var(--bg-card-hover);
-        }
-
-        .member-img-box {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background-color: #0d0d13;
-            border-radius: 10px;
-            overflow: hidden;
+        .server-card-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-        }
-
-        .member-img {
+            justify-content: space-between;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            margin-bottom: 22px;
         }
 
-        .member-card:hover .member-img {
-            transform: scale(1.05);
+        .server-info-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
-        .member-overlay-gradient {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 65%; 
-            background: linear-gradient(to top, rgba(3, 3, 3, 0.95) 0%, rgba(3, 3, 3, 0.4) 60%, rgba(3, 3, 3, 0) 100%);
-            z-index: 3;
+        .server-logo-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 8px;
+            object-fit: contain;
         }
 
-        .member-info-text {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; padding: 20px;
-            z-index: 4; display: flex; flex-direction: column; gap: 4px;
+        .server-title-meta h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
         }
 
-        .member-name { font-size: 16px; font-weight: 700; color: var(--text-main); letter-spacing: -0.3px; line-height: 1.2; }
-        .member-id { font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .server-year {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
 
-        /* --- FULLY ROUNDED & COMPACT STATUS BADGES --- */
+        /* Badge Status Active dengan Efek Kedap-Kedip Pelan */
         .status-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 4px 10px;
-            border-radius: 50px; 
-            font-size: 8px; 
-            font-weight: 800;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            background-color: rgba(46, 213, 115, 0.06);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
             letter-spacing: 0.5px;
+            color: #2ed573;
+            text-transform: uppercase;
+        }
+
+        .status-dot-pulse {
+            width: 6px;
+            height: 6px;
+            background-color: #2ed573;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #2ed573;
+            animation: slowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes slowPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.3; }
+        }
+
+        /* Badge Status Offline */
+        .status-badge.offline {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.03);
+            color: var(--text-grey);
+        }
+
+        .status-badge.offline .status-dot-pulse {
+            background-color: var(--text-grey);
+            box-shadow: none;
+            animation: none; 
+            opacity: 0.6;
+        }
+
+        .server-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        /* Teks Platform Tambahan (Java & Bedrock) */
+        .server-platform-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--mineverse-red);
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .server-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .producer-box h5 {
+            font-size: 10px;
+            color: var(--text-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .producer-name {
+            font-size: 13px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Grey Matte Modifier untuk Selesai Section */
+        .grey-modifier .server-premium-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: var(--bg-card-hover);
+        }
+
+        /* --- 7. FOOTER SECTION --- */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 80px 8% 40px 8%;
+            background-color: #030303;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand-side {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .footer-logo span {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-brand-side p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            z-index: 10;
         }
 
-        .status-badge.active-status {
-            background-color: rgba(3, 3, 3, 0.6);
-            border: 1px solid rgba(52, 230, 230, 0.25);
-            color: var(--mineverse-blue);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
-        .pulse-dot {
-            width: 4px;
-            height: 4px;
-            background-color: var(--mineverse-blue);
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .pulse-dot::after {
+        .footer-col ul li a::before {
             content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            display: inline-block;
+            width: 0;
+            height: 2px;
+            background-color: var(--mineverse-red);
+            box-shadow: 0 0 6px var(--mineverse-red);
+            transition: width 0.25s ease, margin-right 0.25s ease;
+            margin-right: 0;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-col ul li a:hover::before {
+            width: 12px; 
+            margin-right: 8px; 
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom-bar .copyright-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-owner-credit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-owner-credit .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--mineverse-red);
+            box-shadow: 0 0 6px var(--mineverse-red);
             border-radius: 50%;
-            background-color: var(--mineverse-blue);
-            animation: pulse-glow 1.8s infinite ease-in-out;
+            display: inline-block;
         }
 
-        @keyframes pulse-glow {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3.5); opacity: 0; }
+        .giant-footer-bg-text {
+            width: 100%;
+            text-align: center;
+            font-size: 11vw;
+            font-weight: 800;
+            letter-spacing: -0.5vw;
+            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+            pointer-events: none;
+            line-height: 1;
+            margin-top: 20px;
         }
 
-        .status-badge.nonactive-status {
-            background-color: rgba(3, 3, 3, 0.6);
-            border: 1px solid rgba(255, 51, 102, 0.25);
-            color: var(--mineverse-red);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+        /* --- 8. RESPONSIVE COMPRESSION --- */
+        @media (max-width: 1024px) {
+            .branch-stats-grid, .server-cards-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-main-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* --- 5. METROPOLIS MULTI-COLUMN FOOTER --- */
-        footer { border-top: 1px solid var(--border-color); padding: 80px 8% 40px 8%; background-color: #030303; position: relative; z-index: 2; margin-top: 120px; }
-        .footer-main-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 40px; text-align: left; margin-bottom: 60px; }
-        .footer-brand-side { display: flex; flex-direction: column; gap: 16px; }
-        .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-        .footer-logo img { width: 24px; height: 24px; object-fit: contain; }
-        .footer-logo span { font-size: 16px; font-weight: 700; letter-spacing: -0.5px; }
-        .footer-brand-side p { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 280px; }
-        .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .footer-col ul li a { text-decoration: none; font-size: 13.5px; color: var(--text-muted); transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; display: inline-flex; align-items: center; }
-        .footer-col ul li a::before { content: ''; display: inline-block; width: 0; height: 2px; background-color: var(--mineverse-blue); box-shadow: 0 0 6px var(--mineverse-blue); transition: width 0.25s ease, margin-right 0.25s ease; margin-right: 0; }
-        .footer-col ul li a:hover { color: #fff; }
-        .footer-col ul li a:hover::before { width: 12px; margin-right: 8px; }
-        .footer-bottom-bar { border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .footer-bottom-bar .copyright-text { font-size: 13px; color: var(--text-muted); }
-        .footer-owner-credit { display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, 0.4); font-size: 13px; font-weight: 500; letter-spacing: 0.3px; }
-        .footer-owner-credit .dot { width: 6px; height: 6px; background-color: var(--mineverse-blue); box-shadow: 0 0 6px var(--mineverse-blue); border-radius: 50%; display: inline-block; }
-        .giant-footer-bg-text { width: 100%; text-align: center; font-size: 11vw; font-weight: 800; letter-spacing: -0.5vw; background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; user-select: none; pointer-events: none; line-height: 1; margin-top: 20px; }
-
-        /* --- 6. MEDIA QUERIES --- */
-        @media (max-width: 1024px) { .footer-main-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            body { padding-top: 100px; }
             header { padding: 16px 5%; }
             nav, .nav-btn { display: none; }
-            .member-container { padding: 20px 5% 40px 5%; }
-            .member-header { margin-bottom: 40px; }
-            .member-header h1 { font-size: 32px; }
-            .member-header p { font-size: 14px; }
-            .member-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-            .member-card { height: 290px; padding: 12px; }
+            section { padding: 100px 5% 40px 5%; }
+            
+            .branch-hero-container { flex-direction: column-reverse; gap: 30px; text-align: center; }
+            .branch-text-side h1 { font-size: 32px; }
+            .branch-floating-logo { width: 50%; max-width: 180px; }
+            
+            .branch-stats-grid, .server-cards-grid { grid-template-columns: 1fr; }
+            
             .footer-main-grid { grid-template-columns: 1fr; gap: 30px; }
             .footer-bottom-bar { flex-direction: column; align-items: flex-start; }
         }
@@ -332,7 +585,7 @@
 </head>
 <body>
 
-    <!-- HEADER NAVBAR -->
+    <!-- NAVBAR HEADER -->
     <header>
         <a href="index.html#home" class="logo-container">
             <img src="NEW PROFILE MINEVERSE.png" alt="" class="logo-img">
@@ -343,42 +596,192 @@
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#branch">Branch</a></li>
-                <li><a href="index.html#member" class="active">Member</a></li>
+                <li><a href="index.html#member">Member</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
                 <li><a href="#connect-footer">Connect</a></li>
             </ul>
         </nav>
         <a href="#connect-footer" class="nav-btn">Get Started</a>
     </header>
 
-    <!-- CONTENT BODY -->
-    <main class="member-container">
+    <main>
+        <!-- 1. HERO SECTION BRANCH -->
+        <section class="reveal">
+            <div class="branch-hero-container">
+                <div class="branch-text-side">
+                    <div class="section-tag">Official Branch</div>
+                    <h1>Mineverse <span>Server</span></h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.</p>
+                </div>
+                <div class="branch-visual-side">
+                    <img src="MINEVERSE SERVER.png" alt="Alpha Logo" class="branch-floating-logo">
+                </div>
+            </div>
+        </section>
 
-        <div class="member-header reveal">
-            <div class="member-tag">Directory</div>
-            <h1>Daftar Member Resmi</h1>
-            <p>Jelajahi direktori arsip identitas kartu keanggotaan kolektif dan jajaran divisi komunitas global Mineverse.</p>
-        </div>
+        <!-- 2. STATISTICS SECTION (UPDATE COUNTER TOTAL: 5 | AKTIF: 1 | SELESAI: 4) -->
+        <section style="padding-top: 20px; padding-bottom: 40px;">
+            <div class="branch-stats-grid reveal">
+                <div class="about-card">
+                    <h3 class="counter-num" data-target="5">0</h3>
+                    <p>Total Server</p>
+                </div>
+                <div class="about-card">
+                    <h3 class="counter-num" data-target="1">0</h3>
+                    <p>Server Aktif</p>
+                </div>
+                <div class="about-card">
+                    <h3 class="counter-num" data-target="4">0</h3>
+                    <p>Selesai</p>
+                </div>
+            </div>
+        </section>
 
-        <!-- ================= SECTION ACTIVE MEMBERS ================= -->
-        <div class="section-title-wrapper reveal">
-            <div class="section-title-badge active-section">Member Aktif</div>
-            <div class="category-count active-count" id="active-count-badge">0 Members</div>
-        </div>
+        <!-- 3. SERVER AKTIF SECTION -->
+        <section style="padding-top: 40px; padding-bottom: 40px;">
+            <div class="section-tag reveal">Server Aktif</div>
+            
+            <div class="server-cards-grid reveal">
+                <!-- Card 1 -->
+                <div class="server-premium-card">
+                    <div class="server-card-header">
+                        <div class="server-info-left">
+                            <img src="NEW PROFILE MINEVERSE.png" class="server-logo-box" alt="Logo">
+                            <div class="server-title-meta">
+                                <h4>Mine World</h4>
+                                <div class="server-year">play.mineverse.my.id</div>
+                            </div>
+                        </div>
+                        <div class="status-badge">
+                            <span class="status-dot-pulse"></span>
+                            <span>Aktif</span>
+                        </div>
+                    </div>
+                    <div class="server-desc">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.
+                    </div>
+                    <div class="server-platform-text">Java & Bedrock</div>
+                    <div class="server-divider"></div>
+                    <div class="producer-box">
+                        <h5>Produced By</h5>
+                        <div class="producer-name">Reymazu</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="member-grid reveal" id="active-members-grid">
-            <!-- Data dimasukkan via JS script di bawah -->
-        </div>
+        <!-- 4. SELESAI SECTION -->
+        <section style="padding-top: 20px; padding-bottom: 120px;" class="grey-modifier">
+            <div class="section-tag grey-tag reveal">Selesai</div>
+            
+            <div class="server-cards-grid reveal">
+                <!-- Card selesai 1 -->
+                <div class="server-premium-card">
+                    <div class="server-card-header">
+                        <div class="server-info-left">
+                            <img src="NEW PROFILE MINEVERSE.png" class="server-logo-box" alt="Logo" style="opacity: 0.4;">
+                            <div class="server-title-meta">
+                                <h4 style="color: var(--text-grey);">Mine Puasa</h4>
+                                <div class="server-year">2026</div>
+                            </div>
+                        </div>
+                        <div class="status-badge offline">
+                            <span class="status-dot-pulse"></span>
+                            <span>Offline</span>
+                        </div>
+                    </div>
+                    <div class="server-desc" style="color: rgba(255,255,255,0.3);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.
+                    </div>
+                    <div class="server-platform-text" style="color: rgba(255, 42, 42, 0.4);">Java & Bedrock</div>
+                    <div class="server-divider"></div>
+                    <div class="producer-box">
+                        <h5>Produced By</h5>
+                        <div class="producer-name" style="color: var(--text-grey);">Reymazu</div>
+                    </div>
+                </div>
 
-        <!-- ================= SECTION NONACTIVE MEMBERS ================= -->
-        <div class="section-title-wrapper reveal" style="margin-top: 60px;">
-            <div class="section-title-badge nonactive-section">Member Nonaktif</div>
-            <div class="category-count nonactive-count" id="nonactive-count-badge">0 Members</div>
-        </div>
+                <!-- Card selesai 2 -->
+                <div class="server-premium-card">
+                    <div class="server-card-header">
+                        <div class="server-info-left">
+                            <img src="NEW PROFILE MINEVERSE.png" class="server-logo-box" alt="Logo" style="opacity: 0.4;">
+                            <div class="server-title-meta">
+                                <h4 style="color: var(--text-grey);">Mine SMP Season 1</h4>
+                                <div class="server-year">2025</div>
+                            </div>
+                        </div>
+                        <div class="status-badge offline">
+                            <span class="status-dot-pulse"></span>
+                            <span>Offline</span>
+                        </div>
+                    </div>
+                    <!-- PERBAIKAN: tag penutup div di bawah ini yang tadinya hilang sudah dipasang kembali -->
+                    <div class="server-desc" style="color: rgba(255,255,255,0.3);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.
+                    </div>
+                    <div class="server-platform-text" style="color: rgba(255, 42, 42, 0.4);">Java & Bedrock</div>
+                    <div class="server-divider"></div>
+                    <div class="producer-box">
+                        <h5>Produced By</h5>
+                        <div class="producer-name" style="color: var(--text-grey);">Alzena</div>
+                    </div>
+                </div>
 
-        <div class="member-grid reveal" id="nonactive-members-grid">
-            <!-- Data dimasukkan via JS script di bawah -->
-        </div>
+                <!-- Card selesai 3 -->
+                <div class="server-premium-card">
+                    <div class="server-card-header">
+                        <div class="server-info-left">
+                            <img src="NEW PROFILE MINEVERSE.png" class="server-logo-box" alt="Logo" style="opacity: 0.4;">
+                            <div class="server-title-meta">
+                                <h4 style="color: var(--text-grey);">Mine SMP Season 2</h4>
+                                <div class="server-year">2025</div>
+                            </div>
+                        </div>
+                        <div class="status-badge offline">
+                            <span class="status-dot-pulse"></span>
+                            <span>Offline</span>
+                        </div>
+                    </div>
+                    <div class="server-desc" style="color: rgba(255,255,255,0.3);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.
+                    </div>
+                    <div class="server-platform-text" style="color: rgba(255, 42, 42, 0.4);">Java & Bedrock</div>
+                    <div class="server-divider"></div>
+                    <div class="producer-box">
+                        <h5>Produced By</h5>
+                        <div class="producer-name" style="color: var(--text-grey);">Alzena</div>
+                    </div>
+                </div>
 
+                <!-- Card selesai 4 (Sekarang otomatis berada di baris ke-2 tanpa menumpuk) -->
+                <div class="server-premium-card">
+                    <div class="server-card-header">
+                        <div class="server-info-left">
+                            <img src="NEW PROFILE MINEVERSE.png" class="server-logo-box" alt="Logo" style="opacity: 0.4;">
+                            <div class="server-title-meta">
+                                <h4 style="color: var(--text-grey);">Mine SMP Season 3</h4>
+                                <div class="server-year">2025-2026</div>
+                            </div>
+                        </div>
+                        <div class="status-badge offline">
+                            <span class="status-dot-pulse"></span>
+                            <span>Offline</span>
+                        </div>
+                    </div>
+                    <div class="server-desc" style="color: rgba(255,255,255,0.3);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis placerat nibh. Integer aliquam ante erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Mauris mattis accumsan leo, eu sagittis urna ornare ac.
+                    </div>
+                    <div class="server-platform-text" style="color: rgba(255, 42, 42, 0.4);">Java & Bedrock</div>
+                    <div class="server-divider"></div>
+                    <div class="producer-box">
+                        <h5>Produced By</h5>
+                        <div class="producer-name" style="color: var(--text-grey);">Alzena</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
 
     <!-- METROPOLIS MULTI-COLUMN FOOTER -->
@@ -396,7 +799,7 @@
                 <ul>
                     <li><a href="index.html#home">Features</a></li>
                     <li><a href="index.html#branch">Universe</a></li>
-                    <li><a href="milestone.html">Milestones</a></li>
+                    <li><a href="index.html#about">Milestones</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -430,168 +833,55 @@
     </footer>
 
     <script>
-        // Database Member Resmi Mineverse
-        const rawMembers = [
-            { name: "Alzena", status: "Aktif", id: "MINE001", img: "AlzenaPhotoshoot.png" },
-            { name: "Adila", status: "Aktif", id: "MINE002" },
-            { name: "Twelve", status: "Aktif", id: "MINE003" },
-            { name: "Kairi", status: "Aktif", id: "MINE005" },
-            { name: "Raniya", status: "Aktif", id: "MINE011" },
-            { name: "Arin", status: "Aktif", id: "MINE013" },
-            { name: "Tanji", status: "Aktif", id: "MINE014" },
-            { name: "Rafa", status: "Aktif", id: "MINE020" },
-            { name: "Tina", status: "Aktif", id: "MINE021" },
-            { name: "Kei", status: "Aktif", id: "MINE030" },
-            { name: "Hafizh", status: "Aktif", id: "MINE031" },
-            { name: "Nita", status: "Aktif", id: "MINE033" },
-            { name: "Nao", status: "Aktif", id: "MINE035" },
-            { name: "Ren", status: "Aktif", id: "MINE036" },
-            { name: "Venzo", status: "Aktif", id: "MINE037" },
-            { name: "Miu", status: "Aktif", id: "MINE043" },
-            { name: "Willian", status: "Aktif", id: "MINE044" },
-            { name: "Mia", status: "Aktif", id: "MINE046" },
-            { name: "Glennzy", status: "Aktif", id: "MINE048" },
-            { name: "Vyora", status: "Aktif", id: "MINE062" },
-            { name: "Araluen", status: "Aktif", id: "MINE063" },
-            { name: "Najmi", status: "Aktif", id: "MINE065" },
-            { name: "Rave", status: "Aktif", id: "MINE068" },
-            { name: "Cookies pie craft", status: "Aktif", id: "MINE074" },
-            { name: "Hadaa", status: "Aktif", id: "MINE076" },
-            { name: "Bohan", status: "Aktif", id: "MINE077" },
-            { name: "Linn", status: "Aktif", id: "MINE078" },
-            { name: "Arwenda", status: "Aktif", id: "MINE079" },
-            { name: "Rin", status: "Aktif", id: "MINE080" },
-            { name: "Mariska", status: "Aktif", id: "MINE081" },
-            { name: "Awwuie", status: "Aktif", id: "MINE082" },
-            { name: "Widya", status: "Aktif", id: "MINE083" },
-            { name: "Dafan", status: "Aktif", id: "MINE084" },
-            { name: "Satria", status: "Aktif", id: "MINE085" },
-            { name: "Aretha", status: "Nonaktif", id: "MINE004" },
-            { name: "Neura", status: "Nonaktif", id: "MINE006" },
-            { name: "Fey", status: "Nonaktif", id: "MINE007" },
-            { name: "Cristy", status: "Nonaktif", id: "MINE008" },
-            { name: "Lutfi", status: "Nonaktif", id: "MINE009" },
-            { name: "Vangga", status: "Nonaktif", id: "MINE010" },
-            { name: "Fachrian", status: "Nonaktif", id: "MINE012" },
-            { name: "Dzaqi", status: "Nonaktif", id: "MINE015" },
-            { name: "Anka", status: "Nonaktif", id: "MINE016" },
-            { name: "Yura", status: "Nonaktif", id: "MINE017" },
-            { name: "Chandra", status: "Nonaktif", id: "MINE018" },
-            { name: "Bizar", status: "Nonaktif", id: "MINE019" },
-            { name: "Cellie", status: "Nonaktif", id: "MINE022" },
-            { name: "Ryu", status: "Nonaktif", id: "MINE023" },
-            { name: "Voiz", status: "Nonaktif", id: "MINE024" },
-            { name: "Mira", status: "Nonaktif", id: "MINE025" },
-            { name: "Meira", status: "Nonaktif", id: "MINE026" },
-            { name: "Naba", status: "Nonaktif", id: "MINE027" },
-            { name: "Bening", status: "Nonaktif", id: "MINE028" },
-            { name: "Kelp", status: "Nonaktif", id: "MINE029" },
-            { name: "Vincent", status: "Nonaktif", id: "MINE032" },
-            { name: "Alfros", status: "Nonaktif", id: "MINE034" },
-            { name: "Meisya", status: "Nonaktif", id: "MINE038" },
-            { name: "Mutia", status: "Nonaktif", id: "MINE039" },
-            { name: "Vellycia", status: "Nonaktif", id: "MINE040" },
-            { name: "Keysha", status: "Nonaktif", id: "MINE041" },
-            { name: "Kaira", status: "Nonaktif", id: "MINE042" },
-            { name: "Celine", status: "Nonaktif", id: "MINE045" },
-            { name: "Dayana", status: "Nonaktif", id: "MINE047" },
-            { name: "Aidah", status: "Nonaktif", id: "MINE049" },
-            { name: "Shazera", status: "Nonaktif", id: "MINE050" },
-            { name: "Zeva", status: "Nonaktif", id: "MINE051" },
-            { name: "Rya", status: "Nonaktif", id: "MINE052" },
-            { name: "Haura", status: "Nonaktif", id: "MINE053" },
-            { name: "Myoura", status: "Nonaktif", id: "MINE054" },
-            { name: "Eca", status: "Nonaktif", id: "MINE055" },
-            { name: "Ikan", status: "Nonaktif", id: "MINE056" },
-            { name: "Agung", status: "Nonaktif", id: "MINE057" },
-            { name: "Angel", status: "Nonaktif", id: "MINE058" },
-            { name: "Nuril", status: "Nonaktif", id: "MINE059" },
-            { name: "Bugus", status: "Nonaktif", id: "MINE060" },
-            { name: "Ayii", status: "Nonaktif", id: "MINE061" },
-            { name: "Aru", status: "Nonaktif", id: "MINE064" },
-            { name: "Salsa", status: "Nonaktif", id: "MINE066" },
-            { name: "Rayymasut", status: "Nonaktif", id: "MINE067" },
-            { name: "Unknown", status: "Nonaktif", id: "MINE069" },
-            { name: "Aruna Celestine", status: "Nonaktif", id: "MINE070" },
-            { name: "Aisy", status: "Nonaktif", id: "MINE071" },
-            { name: "zeli", status: "Nonaktif", id: "MINE072" },
-            { name: "zaro", status: "Nonaktif", id: "MINE073" },
-            { name: "Livvyura", status: "Nonaktif", id: "MINE075" }
-        ];
+        // NUMERICAL COUNTER ANIMATION SYSTEM
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter-num');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 1200; 
+                const increment = target / (duration / 16); 
+                
+                let current = 0;
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        setTimeout(updateCount, 16);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
 
-        const activeGrid = document.getElementById('active-members-grid');
-        const nonactiveGrid = document.getElementById('nonactive-members-grid');
-
-        let activeCount = 0;
-        let nonactiveCount = 0;
-
-        // Render Loop System
-        rawMembers.forEach(member => {
-            const imagePath = member.img ? member.img : `members/${member.name}.jpg`;
-            
-            if (member.status === "Aktif") {
-                activeCount++;
-                const cardHTML = `
-                    <div class="member-card active-card">
-                        <span class="status-badge active-status">
-                            <span class="pulse-dot"></span>Active
-                        </span>
-                        <div class="member-img-box">
-                            <img src="${imagePath}" alt="${member.name}" class="member-img" onerror="this.src='iconmember.png'">
-                            <div class="member-overlay-gradient"></div>
-                            <div class="member-info-text">
-                                <div class="member-name">${member.name}</div>
-                                <div class="member-id" style="color: var(--mineverse-blue);">${member.id}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                activeGrid.insertAdjacentHTML('beforeend', cardHTML);
-            } else {
-                nonactiveCount++;
-                const cardHTML = `
-                    <div class="member-card nonactive-card">
-                        <span class="status-badge nonactive-status">Nonaktif</span>
-                        <div class="member-img-box">
-                            <img src="${imagePath}" alt="${member.name}" class="member-img" onerror="this.src='iconmember.png'">
-                            <div class="member-overlay-gradient"></div>
-                            <div class="member-info-text">
-                                <div class="member-name">${member.name}</div>
-                                <div class="member-id" style="color: var(--mineverse-red);">${member.id}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                nonactiveGrid.insertAdjacentHTML('beforeend', cardHTML);
-            }
-        });
-
-        // Update Dynamic Badges Total Count
-        document.getElementById('active-count-badge').innerText = `${activeCount} Members`;
-        document.getElementById('nonactive-count-badge').innerText = `${nonactiveCount} Members`;
-
-        // Observer Reveal
+        // REVEAL ANIMATION IN VIEWPORT
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    if (entry.target.classList.contains('branch-stats-grid')) {
+                        startCounters();
+                    }
                 }
             });
-        }, { threshold: 0.03 });
+        }, { threshold: 0.1 });
 
         revealElements.forEach(element => { revealObserver.observe(element); });
 
-        // Cursor Particle
+        // CURSOR PARTICLE TRAIL
         document.addEventListener('mousemove', (e) => {
             if (Math.random() < 0.15) { 
                 const particle = document.createElement('div');
                 particle.classList.add('cursor-particle');
                 particle.style.left = e.clientX + 'px';
                 particle.style.top = e.clientY + 'px';
+                
                 const size = Math.random() * 5 + 3;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
+
                 document.body.appendChild(particle);
                 setTimeout(() => { particle.remove(); }, 500);
             }
