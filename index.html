@@ -186,7 +186,7 @@
         .section-title-center {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 30px auto;
         }
 
         .section-title-center h2 {
@@ -358,7 +358,7 @@
             50% { height: 28px; }
         }
 
-        /* --- 5. ABOUT SECTION --- */
+        /* --- 5. ABOUT SECTION (RE-STRUCTURED FOR MOBILE PERFECT) --- */
         .about-6grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -370,7 +370,7 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 30px;
+            padding: 24px;
             transition: background-color 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -383,7 +383,7 @@
         }
 
         .about-card h3 {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
@@ -392,15 +392,17 @@
         }
 
         .about-card p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.5;
             font-weight: 500;
         }
 
+        /* Perbaikan Flex Grid Statistik Utama */
         .about-stats-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            align-items: center;
             gap: 20px;
             width: 100%;
         }
@@ -411,47 +413,51 @@
         }
 
         .about-stat-sub-item h4 {
-            font-size: 54px; 
+            font-size: 46px; 
             font-weight: 900;
             color: var(--mineverse-blue); 
             line-height: 1.1;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -1px;
         }
 
         .about-stat-sub-item p {
-            font-size: 12px !important;
-            color: #ffffff !important; 
+            font-size: 10px !important;
+            color: rgba(255, 255, 255, 0.6) !important; 
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
+        /* Perbaikan Stack Avatar agar Tidak Rusak di Mobile */
         .member-inline-wrapper {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: nowrap;
         }
 
         .member-inline-wrapper h4 {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 800;
             color: #fff;
+            white-space: nowrap;
         }
 
         .profile-stack-images {
             display: flex;
             flex-direction: row; 
             align-items: center;
+            flex-shrink: 0;
         }
 
         .profile-stack-img {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             border: 2px solid var(--bg-card);
-            margin-right: -10px; 
+            margin-right: -8px; 
             object-fit: cover;
             background-color: #222;
         }
@@ -460,7 +466,7 @@
             margin-right: 0; 
         }
 
-        /* --- 6. BRANCH SECTION (PEMBARUAN) --- */
+        /* --- 6. BRANCH SECTION (REVISI JUDUL) --- */
         .branch-grid {
             display: flex;
             flex-direction: column;
@@ -513,11 +519,15 @@
             object-fit: cover;
         }
 
+        /* CSS Judul Modifikasi Baru: Brand Putih, Tipe Aksen Warna */
         .branch-h-left h3 {
             font-size: 28px;
             font-weight: 800;
             letter-spacing: -0.5px;
             line-height: 1.2;
+        }
+        .branch-h-left h3 span.brand-white {
+            color: #ffffff; /* Mineverse berwarna Putih */
         }
 
         .branch-desc {
@@ -580,7 +590,7 @@
             border: 2px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(255, 59, 48, 0.2);
         }
-        .branch-red .branch-h-left h3 { color: var(--accent-color); }
+        .branch-red .branch-h-left h3 span.type-color { color: var(--accent-color); } /* Khusus Tipe yang Berwarna */
         .branch-red .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-red .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -610,7 +620,7 @@
             border: 2px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
         }
-        .branch-yellow .branch-h-left h3 { color: var(--accent-color); }
+        .branch-yellow .branch-h-left h3 span.type-color { color: var(--accent-color); } /* Khusus Tipe yang Berwarna */
         .branch-yellow .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-yellow .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -640,7 +650,7 @@
             border: 2px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(52, 199, 89, 0.2);
         }
-        .branch-green .branch-h-left h3 { color: var(--accent-color); }
+        .branch-green .branch-h-left h3 span.type-color { color: var(--accent-color); } /* Khusus Tipe yang Berwarna */
         .branch-green .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-green .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -999,19 +1009,67 @@
         @media (max-width: 768px) {
             header { padding: 16px 5%; }
             nav, .nav-btn { display: none; } 
-            section { padding: 100px 5% 60px 5%; }
+            section { padding: 80px 5% 50px 5%; }
             
             #home h1 { font-size: 38px; letter-spacing: -1px; }
             #home p { font-size: 14px; }
             
-            .section-title-center h2 { font-size: 30px; letter-spacing: -1px; }
+            .section-title-center h2 { font-size: 28px; letter-spacing: -1px; }
             
             .home-cta-group { flex-direction: column; width: 100%; }
-            .about-6grid { grid-template-columns: 1fr; }
-            .about-stats-container { flex-direction: column; gap: 25px; }
-            .about-stat-sub-item h4 { font-size: 44px; }
-            
-            /* Pembaharuan Susunan Sempurna Layar HP untuk Card Terkini */
+
+            /* --- TOTAL REBUILD UNTUK MOBILE ABOUT SECTION agar rapi --- */
+            .about-header-actions {
+                margin-bottom: 24px;
+                text-align: left; /* Biar sejajar rapi ke kiri di hp */
+            }
+            .about-header-actions .btn-blue {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .about-6grid { 
+                grid-template-columns: 1fr; /* Satu kolom penuh agar berurutan tegas */
+                gap: 16px; 
+            }
+
+            /* Main Card Statistik Utama di HP */
+            .about-6grid .about-card[style*="grid-column"] {
+                grid-column: span 1 !important;
+                padding: 24px 16px !important;
+            }
+
+            .about-stats-container {
+                flex-direction: row !important; /* Tetap horizontal di HP agar tidak melar vertikal seperti di screenshot */
+                justify-content: space-around;
+                gap: 10px;
+            }
+
+            .about-stat-sub-item h4 {
+                font-size: 28px; /* Lebih kecil agar muat 1 baris */
+            }
+
+            .about-stat-sub-item p {
+                font-size: 8px !important; /* Pas untuk layar mobile */
+                letter-spacing: 0.2px;
+            }
+
+            /* Card Active Members */
+            .about-card {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+
+            .member-inline-wrapper h4 {
+                font-size: 15px; /* Mengurangi resiko teks turun baris */
+            }
+
+            .profile-stack-img {
+                width: 24px;
+                height: 24px;
+            }
+
+            /* --- PEMBARUAN SUSUNAN CARD BRANCHES --- */
             .branch-horizontal-card {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1113,7 +1171,7 @@
                     <div class="about-stats-container">
                         <div class="about-stat-sub-item">
                             <h4 class="counter-up" data-target="4">0</h4>
-                            <p>Server Branches</p>
+                            <p>Servers</p>
                         </div>
                         <div class="about-stat-sub-item">
                             <h4 class="counter-up" data-target="24">0</h4>
@@ -1121,7 +1179,7 @@
                         </div>
                         <div class="about-stat-sub-item">
                             <h4 class="counter-up" data-target="100">0</h4>
-                            <p>Creative Projects</p>
+                            <p>Projects</p>
                         </div>
                     </div>
                 </div>
@@ -1168,9 +1226,12 @@
                 <div class="branch-horizontal-card branch-red reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <img src="MINEVERSE SERVER.png" alt="Logo Mineverse">
+                            <img src="NEW PROFILE MINEVERSE.png" alt="Logo Mineverse">
                         </div>
-                        <h3>MINEVERSE SERVER</h3>
+                        <h3>
+                            <span class="brand-white">MINEVERSE</span> 
+                            <span class="type-color">SERVER</span>
+                        </h3>
                         <p class="branch-desc">Infrastruktur server interaktif berperforma tinggi yang dikembangkan khusus untuk mendukung stabilitas bermain dan koordinasi komunitas skala masif.</p>
                         
                         <ul class="branch-features-list">
@@ -1201,9 +1262,12 @@
                 <div class="branch-horizontal-card branch-yellow reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <img src="MINEVERSE STUDIO.png" alt="Logo Mineverse">
+                            <img src="NEW PROFILE MINEVERSE.png" alt="Logo Mineverse">
                         </div>
-                        <h3>MINEVERSE STUDIOS</h3>
+                        <h3>
+                            <span class="brand-white">MINEVERSE</span> 
+                            <span class="type-color">STUDIOS</span>
+                        </h3>
                         <p class="branch-desc">Laboratorium khusus produksi kreatif multimedia, visual engineering, cinematic artwork, serta manajemen konten digital berskala industri modern.</p>
                         
                         <ul class="branch-features-list">
@@ -1234,9 +1298,12 @@
                 <div class="branch-horizontal-card branch-green reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <img src="MINEVERSE STORE.png" alt="Logo Mineverse">
+                            <img src="NEW PROFILE MINEVERSE.png" alt="Logo Mineverse">
                         </div>
-                        <h3>MINEVERSE STORE</h3>
+                        <h3>
+                            <span class="brand-white">MINEVERSE</span> 
+                            <span class="type-color">STORE</span>
+                        </h3>
                         <p class="branch-desc">Pusat perdagangan resmi ekosistem yang menyediakan komoditas digital berlisensi serta merchandise fisik eksklusif berkualitas premium.</p>
                         
                         <ul class="branch-features-list">
