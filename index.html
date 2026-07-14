@@ -43,7 +43,7 @@
             background-size: 48px 48px;
         }
 
-        /* System Animasi Masuk (Fade & Rise) Pas Refresh / Scroll */
+        /* System Animasi Masuk */
         .reveal {
             opacity: 0;
             transform: translateY(25px);
@@ -460,73 +460,64 @@
             margin-right: 0; 
         }
 
-        /* --- 6. BRANCH SECTION (REVISED: IN-GLOW WITH CARD SPECIFIC HOVER EFFECT) --- */
+        /* --- 6. BRANCH SECTION (PEMBARUAN) --- */
         .branch-grid {
             display: flex;
             flex-direction: column;
             gap: 24px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        /* Horizontal Card Base */
         .branch-horizontal-card {
             background-color: #0b0b0f;
             border: 1.5px solid var(--border-color);
-            border-radius: 32px;
-            padding: 40px;
+            border-radius: 24px;
+            padding: 35px 40px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            gap: 30px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, background 0.5s ease;
         }
 
-        /* Left Content Layout */
         .branch-h-left {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-            max-width: 60%;
+            gap: 18px;
+            flex: 1;
             z-index: 2;
         }
 
-        /* Icon Container (Round-rect style) */
+        /* Ikon Menggunakan Gambar Logo Utama dengan Filter Warna Sesuai Card */
         .branch-icon-container {
-            width: 64px;
-            height: 64px;
-            border-radius: 18px;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: transparent;
             transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .branch-icon-container svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        /* Card Text styling */
-        .branch-tagline {
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 4px;
+        .branch-icon-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .branch-h-left h3 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
-            letter-spacing: -1px;
-            color: #fff;
-            line-height: 1.1;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         .branch-desc {
@@ -535,7 +526,6 @@
             line-height: 1.6;
         }
 
-        /* Features List (Diamond Bullets) */
         .branch-features-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -558,65 +548,39 @@
             flex-shrink: 0;
         }
 
-        /* Right Side Layout */
         .branch-h-right {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: space-between;
-            height: 100%;
-            min-height: 220px;
+            align-items: center;
+            justify-content: center;
             z-index: 2;
         }
 
-        /* Interactive Thumbnail */
-        .branch-thumb-wrapper {
-            width: 150px;
-            height: 100px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .branch-thumb-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .branch-horizontal-card:hover .branch-thumb-wrapper {
-            transform: scale(1.05);
-        }
-
-        /* Pill styled button in the corner */
         .branch-pill-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
             font-size: 13px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
             background: transparent;
+            white-space: nowrap;
         }
 
-        /* --- CARD COLOR PROFILES & REVISED IN-GLOW (INNER GRADIENT HOVER & BORDER) --- */
+        /* --- WARNA AKSEN CUSTOM TIAP CARD --- */
         
-        /* 1. RED (Server) */
+        /* 1. MINEVERSE SERVER (RED) */
         .branch-red {
             --accent-color: #FF3B30;
-            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(255, 59, 48, 0.12) 0%, rgba(11, 11, 15, 0) 80%);
+            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(255, 59, 48, 0.1) 0%, rgba(11, 11, 15, 0) 80%);
         }
         .branch-red .branch-icon-container {
             border: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(255, 59, 48, 0.15);
+            box-shadow: 0 0 15px rgba(255, 59, 48, 0.2);
         }
-        .branch-red .branch-icon-container svg { fill: var(--accent-color); }
-        .branch-red .branch-tagline { color: var(--accent-color); }
+        .branch-red .branch-h-left h3 { color: var(--accent-color); }
         .branch-red .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-red .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -627,29 +591,26 @@
             color: #000;
             box-shadow: 0 0 15px rgba(255, 59, 48, 0.4);
         }
-        /* Hover: Timbul Glow Gradient didalam & Outer Outline tipis */
         .branch-red:hover {
             transform: translateY(-4px);
             border-color: var(--accent-color);
             background: var(--accent-glow-inner), #111116;
         }
-        /* Click Active State */
         .branch-red.clicked-active {
             border-color: var(--accent-color) !important;
             background: radial-gradient(circle at center, rgba(255, 59, 48, 0.15) 0%, #111116 100%) !important;
         }
 
-        /* 2. YELLOW (Studios) */
+        /* 2. MINEVERSE STUDIOS (YELLOW) */
         .branch-yellow {
             --accent-color: #FFCC00;
-            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(255, 204, 0, 0.12) 0%, rgba(11, 11, 15, 0) 80%);
+            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(255, 204, 0, 0.1) 0%, rgba(11, 11, 15, 0) 80%);
         }
         .branch-yellow .branch-icon-container {
             border: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.15);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
         }
-        .branch-yellow .branch-icon-container svg { fill: var(--accent-color); }
-        .branch-yellow .branch-tagline { color: var(--accent-color); }
+        .branch-yellow .branch-h-left h3 { color: var(--accent-color); }
         .branch-yellow .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-yellow .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -660,29 +621,26 @@
             color: #000;
             box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
         }
-        /* Hover: Timbul Glow Gradient didalam & Outer Outline tipis */
         .branch-yellow:hover {
             transform: translateY(-4px);
             border-color: var(--accent-color);
             background: var(--accent-glow-inner), #111116;
         }
-        /* Click Active State */
         .branch-yellow.clicked-active {
             border-color: var(--accent-color) !important;
             background: radial-gradient(circle at center, rgba(255, 204, 0, 0.15) 0%, #111116 100%) !important;
         }
 
-        /* 3. GREEN (Store) */
+        /* 3. MINEVERSE STORE (GREEN) */
         .branch-green {
             --accent-color: #34C759;
-            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(52, 199, 89, 0.12) 0%, rgba(11, 11, 15, 0) 80%);
+            --accent-glow-inner: radial-gradient(circle at 50% 100%, rgba(52, 199, 89, 0.1) 0%, rgba(11, 11, 15, 0) 80%);
         }
         .branch-green .branch-icon-container {
             border: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(52, 199, 89, 0.15);
+            box-shadow: 0 0 15px rgba(52, 199, 89, 0.2);
         }
-        .branch-green .branch-icon-container svg { fill: var(--accent-color); }
-        .branch-green .branch-tagline { color: var(--accent-color); }
+        .branch-green .branch-h-left h3 { color: var(--accent-color); }
         .branch-green .branch-features-list li svg { stroke: var(--accent-color); }
         .branch-green .branch-pill-btn {
             border: 2px solid var(--accent-color);
@@ -693,13 +651,11 @@
             color: #000;
             box-shadow: 0 0 15px rgba(52, 199, 89, 0.4);
         }
-        /* Hover: Timbul Glow Gradient didalam & Outer Outline tipis */
         .branch-green:hover {
             transform: translateY(-4px);
             border-color: var(--accent-color);
             background: var(--accent-glow-inner), #111116;
         }
-        /* Click Active State */
         .branch-green.clicked-active {
             border-color: var(--accent-color) !important;
             background: radial-gradient(circle at center, rgba(52, 199, 89, 0.15) 0%, #111116 100%) !important;
@@ -886,7 +842,7 @@
             color: var(--mineverse-blue);
         }
 
-        /* --- 9. METROPOLIS MULTI-COLUMN FOOTER --- */
+        /* --- 9. MULTI-COLUMN FOOTER --- */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 80px 8% 40px 8%;
@@ -1031,7 +987,7 @@
             margin-top: 20px;
         }
 
-        /* --- 10. RESPONSIVE COMPRESSION --- */
+        /* --- 10. MOBILE ADVANCED RESPONSIVE PRESETS --- */
         @media (max-width: 1024px) {
             .about-6grid { grid-template-columns: repeat(2, 1fr); }
             .article-grid-layout { grid-template-columns: 1fr; }
@@ -1045,35 +1001,48 @@
             nav, .nav-btn { display: none; } 
             section { padding: 100px 5% 60px 5%; }
             
-            #home h1 { font-size: 36px; }
-            #home p { font-size: 15px; }
+            #home h1 { font-size: 38px; letter-spacing: -1px; }
+            #home p { font-size: 14px; }
+            
+            .section-title-center h2 { font-size: 30px; letter-spacing: -1px; }
             
             .home-cta-group { flex-direction: column; width: 100%; }
             .about-6grid { grid-template-columns: 1fr; }
             .about-stats-container { flex-direction: column; gap: 25px; }
             .about-stat-sub-item h4 { font-size: 44px; }
             
-            /* Responsive Branch Cards */
+            /* Pembaharuan Susunan Sempurna Layar HP untuk Card Terkini */
             .branch-horizontal-card {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 24px;
+                gap: 20px;
                 padding: 24px;
+                border-radius: 20px;
             }
-            .branch-h-left { max-width: 100%; }
+            .branch-h-left h3 { font-size: 22px; }
+            .branch-desc { font-size: 13px; }
+            .branch-features-list { grid-template-columns: 1fr; gap: 8px; width: 100%; }
+            
             .branch-h-right {
                 width: 100%;
-                align-items: flex-start;
-                min-height: auto;
-                gap: 20px;
+                justify-content: flex-start;
+                margin-top: 5px;
             }
-            .branch-thumb-wrapper {
+            .branch-pill-btn {
                 width: 100%;
-                height: 150px;
+                justify-content: center;
+                padding: 12px 20px;
             }
             
+            .article-img-side { height: 220px; }
+            .article-body-side { padding: 24px; }
+            .article-body-side h3 { font-size: 20px; }
+            .article-sub-card { padding: 24px; }
+
+            .faq-left-title h2 { font-size: 28px; }
+            
             .footer-main-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-bottom-bar { flex-direction: column; align-items: flex-start; }
+            .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 15px; }
         }
     </style>
 </head>
@@ -1199,14 +1168,9 @@
                 <div class="branch-horizontal-card branch-red reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"/>
-                            </svg>
+                            <img src="MINEVERSE SERVER.png" alt="Logo Mineverse">
                         </div>
-                        <div>
-                            <div class="branch-tagline">High Performance</div>
-                            <h3>MINEVERSE SERVER</h3>
-                        </div>
+                        <h3>MINEVERSE SERVER</h3>
                         <p class="branch-desc">Infrastruktur server interaktif berperforma tinggi yang dikembangkan khusus untuk mendukung stabilitas bermain dan koordinasi komunitas skala masif.</p>
                         
                         <ul class="branch-features-list">
@@ -1229,9 +1193,6 @@
                         </ul>
                     </div>
                     <div class="branch-h-right">
-                        <div class="branch-thumb-wrapper">
-                            <img src="MINEVERSE SERVER.png" alt="Mineverse Server">
-                        </div>
                         <a href="branch-alpha.html" class="branch-pill-btn">Pilih &gt;</a>
                     </div>
                 </div>
@@ -1240,14 +1201,9 @@
                 <div class="branch-horizontal-card branch-yellow reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zm-1-11h2v6h-2V9zm0-3h2v2h-2V6z"/>
-                            </svg>
+                            <img src="MINEVERSE STUDIO.png" alt="Logo Mineverse">
                         </div>
-                        <div>
-                            <div class="branch-tagline">Creative Lab</div>
-                            <h3>MINEVERSE STUDIOS</h3>
-                        </div>
+                        <h3>MINEVERSE STUDIOS</h3>
                         <p class="branch-desc">Laboratorium khusus produksi kreatif multimedia, visual engineering, cinematic artwork, serta manajemen konten digital berskala industri modern.</p>
                         
                         <ul class="branch-features-list">
@@ -1270,9 +1226,6 @@
                         </ul>
                     </div>
                     <div class="branch-h-right">
-                        <div class="branch-thumb-wrapper">
-                            <img src="MINEVERSE STUDIO.png" alt="Mineverse Studios">
-                        </div>
                         <a href="branch-beta.html" class="branch-pill-btn">Pilih &gt;</a>
                     </div>
                 </div>
@@ -1281,14 +1234,9 @@
                 <div class="branch-horizontal-card branch-green reveal" onclick="activateGlow(this)">
                     <div class="branch-h-left">
                         <div class="branch-icon-container">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M17 18a2 2 0 012 2v2H5v-2a2 2 0 012-2h10zM12 2a5 5 0 00-5 5v3H5v6h14v-6h-2V7a5 5 0 00-5-5zm3 5v3H9V7a3 3 0 016 0z" />
-                            </svg>
+                            <img src="MINEVERSE STORE.png" alt="Logo Mineverse">
                         </div>
-                        <div>
-                            <div class="branch-tagline">Premium Store</div>
-                            <h3>MINEVERSE STORE</h3>
-                        </div>
+                        <h3>MINEVERSE STORE</h3>
                         <p class="branch-desc">Pusat perdagangan resmi ekosistem yang menyediakan komoditas digital berlisensi serta merchandise fisik eksklusif berkualitas premium.</p>
                         
                         <ul class="branch-features-list">
@@ -1311,9 +1259,6 @@
                         </ul>
                     </div>
                     <div class="branch-h-right">
-                        <div class="branch-thumb-wrapper">
-                            <img src="MINEVERSE STORE.png" alt="Mineverse Store">
-                        </div>
                         <a href="branch-omega.html" class="branch-pill-btn">Pilih &gt;</a>
                     </div>
                 </div>
@@ -1330,7 +1275,6 @@
             </div>
 
             <div class="article-grid-layout reveal">
-                <!-- Card 1 -->
                 <div class="article-main-row">
                     <div class="article-img-side"></div>
                     <div class="article-body-side">
@@ -1341,7 +1285,6 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="article-sub-card">
                     <div class="date-badge">Innovation</div>
                     <h4>Menerima Inovasi Kreatif</h4>
@@ -1349,7 +1292,6 @@
                     <a href="#" class="link-text-arrow">Propose Idea →</a>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="article-sub-card">
                     <div class="date-badge">Partnership</div>
                     <h4>Partnership & Kolaborasi Strategis</h4>
@@ -1450,7 +1392,6 @@
     </footer>
 
     <script>
-        // Fungsi interaktif glow pada saat kartu di-klik
         function activateGlow(cardElement) {
             document.querySelectorAll('.branch-horizontal-card').forEach(card => {
                 card.classList.remove('clicked-active');
@@ -1466,9 +1407,7 @@
             });
         }
 
-        // IntersectionObserver Global untuk Efek Reveal
         const revealElements = document.querySelectorAll('.reveal');
-        
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1484,7 +1423,6 @@
             revealObserver.observe(element);
         });
 
-        // Counter Up Observer
         const aboutSection = document.getElementById('about');
         let counterAnimated = false;
 
@@ -1521,7 +1459,6 @@
             });
         }
 
-        // Efek Partikel Kursor
         document.addEventListener('mousemove', (e) => {
             if (Math.random() < 0.15) { 
                 const particle = document.createElement('div');
@@ -1542,7 +1479,6 @@
             }
         });
 
-        // Kontrol Akordion FAQ
         function toggleFaq(button) {
             const currentItem = button.parentElement;
             currentItem.classList.toggle('active');
@@ -1555,7 +1491,6 @@
             });
         }
 
-        // Highlight Nav Link Aktif Saat di-Scroll
         const sections = document.querySelectorAll('section, footer');
         const navLinks = document.querySelectorAll('nav ul li a');
 
