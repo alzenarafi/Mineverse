@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineverse Studios | Movie Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #030303; color: #fff; padding: 40px 8%; }
+        
+        .back-btn { color: #FFD200; text-decoration: none; font-size: 14px; font-weight: 600; display: inline-block; margin-bottom: 30px; }
+        
+        .movie-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .movie-title { font-size: 38px; font-weight: 800; }
+        .avg-rating-badge { background: rgba(255, 210, 0, 0.1); border: 1px solid #FFD200; color: #FFD200; padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 16px; }
+
+        .content-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+        .main-info-side { display: flex; flex-direction: column; gap: 30px; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .gallery-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+
+        .teaser-box iframe { width: 100%; height: 315px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+
+        .meta-box { background: #0b0b0f; border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 20px; }
+        .meta-box h3 { margin-bottom: 15px; font-size: 18px; color: #FFD200; }
+        .meta-box p { color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 15px; font-size: 14px; }
+
+        /* Rating & Review Section */
+        .review-section { margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; }
+        .review-form { background: #0b0b0f; border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 20px; margin-bottom: 30px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 13px; color: rgba(255,255,255,0.6); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: #111116; border: 1px solid rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; color: #fff; }
+        .submit-btn { background: #FFD200; color: #000; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { opacity: 0.9; }
+
+        .comment-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 15px; }
+        .comment-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .comment-user { font-weight: 600; font-size: 14px; }
+        .comment-rating { color: #FFD200; font-weight: 700; font-size: 13px; }
+        .comment-text { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.5; }
+
+        @media (max-width: 768px) { .content-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← Kembali ke Branch Beta</a>
+
+    <div class="movie-header">
+        <h1 class="movie-title" id="movieTitle">Loading Film...</h1>
+        <div class="avg-rating-badge" id="avgRating">⭐ 0.0</div>
+    </div>
+
+    <div class="content-layout">
+        <!-- SISI KIRI: MEDIA & TEASER -->
+        <div class="main-info-side">
+            <div class="teaser-box">
+                <!-- Gunakan embed YouTube dummy terlebih dahulu -->
+                <iframe id="movieTeaser" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <h3 style="color: #FFD200; font-size: 18px;">Gallery / Scenes</h3>
+            <div class="gallery-grid" id="movieGallery">
+                <!-- Gambar di-render lewat JS -->
+            </div>
+        </div>
+
+        <!-- SISI KANAN: SINOPSIS & CAST -->
+        <div class="right-meta-side">
+            <div class="meta-box">
+                <h3>Synopsis</h3>
+                <p id="movieSynopsis">Loading...</p>
+                
+                <h3>Director</h3>
+                <p id="movieDirector">Loading...</p>
+                
+                <h3>Cast</h3>
+                <p id="movieCast">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION FEEDBACK & RATING -->
+    <div class="review-section">
+        <h2 style="margin-bottom: 20px; font-size: 24px;">User Reviews</h2>
+        
+        <!-- Form Ulasan -->
+        <form class="review-form" id="reviewForm">
+            <div class="form-group">
+                <label>Nama Anda</label>
+                <input type="text" id="reviewerName" required placeholder="Masukkan nama...">
+            </div>
+            <div class="form-group">
+                <label>Rating Bintang</label>
+                <select id="reviewerRating" required>
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                    <option value="2">⭐⭐ (2/5)</option>
+                    <option value="1">⭐ (1/5)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Komentar / Ulasan</label>
+                <textarea id="reviewerComment" rows="4" required placeholder="Tulis opini kamu tentang film ini..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Kirim Ulasan</button>
+        </form>
+
+        <!-- List Ulasan yang Masuk -->
+        <div id="commentsContainer">
+            <!-- Komentar render otomatis via JS -->
+        </div>
+    </div>
+
+    <script>
+        // DATA FILMS (DUMMY DATABASE STATIS SEMENTARA)
+        const movieDatabase = {
+            "how-do-you-live": {
+                title: "How Do You Live?",
+                synopsis: "Mengisahkan perjalanan emosional seorang anak muda dalam mencari arti kehidupan, menghadapi kedukaan, tumbuh dewasa melewati masa transisi sulit, serta memahami dunia di sekitarnya lewat sudut pandang magis yang tak terduga.",
+                director: "Alzena Rafi",
+                cast: "Arcee, Rian, Zaky Media, & Beta Sector Members",
+                teaserUrl: "https://www.youtube.com/embed/f7EDFGAFiTM", // Ganti dengan URL embed aslimu
+                images: ["MINEVERSE STUDIO.png", "MINEVERSE SERVER.png", "MINEVERSE STUDIO.png"]
+            }
+        };
+
+        // Mengambil ID film dari URL parameter (?film=how-do-you-live)
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieKey = urlParams.get('film') || "how-do-you-live";
+        const movieData = movieDatabase[movieKey];
+
+        // Render Data Film ke Halaman Detail
+        if(movieData) {
+            document.getElementById('movieTitle').innerText = movieData.title;
+            document.getElementById('movieSynopsis').innerText = movieData.synopsis;
+            document.getElementById('movieDirector').innerText = movieData.director;
+            document.getElementById('movieCast').innerText = movieData.cast;
+            document.getElementById('movieTeaser').src = movieData.teaserUrl;
+            
+            // Render Galeri Foto
+            const galleryHtml = movieData.images.map(img => `<img src="${img}" alt="Scene">`).join('');
+            document.getElementById('movieGallery').innerHTML = galleryHtml;
+        }
+
+        // --- SISTEM DYNAMIC RATING & COMMENT (LOCALSTORAGE) ---
+        const storageKey = `reviews_${movieKey}`;
+
+        function loadReviews() {
+            const reviews = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const container = document.getElementById('commentsContainer');
+            
+            if(reviews.length === 0) {
+                container.innerHTML = `<p style="color: rgba(255,255,255,0.4); font-style: italic;">Belum ada ulasan. Jadilah yang pertama!</p>`;
+                document.getElementById('avgRating').innerText = "⭐ 0.0";
+                return;
+            }
+
+            // Hitung Rating Rata-rata
+            const totalScore = reviews.reduce((sum, item) => sum + item.rating, 0);
+            const average = (totalScore / reviews.length).toFixed(1);
+            document.getElementById('avgRating').innerText = `⭐ ${average} (${reviews.length})`;
+
+            // Render List Komentar
+            container.innerHTML = reviews.map(rev => `
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <span class="comment-user">${rev.name}</span>
+                        <span class="comment-rating">${"⭐".repeat(rev.rating)}</span>
+                    </div>
+                    <p class="comment-text">${rev.comment}</p>
+                </div>
+            `).join('');
+        }
+
+        // Menangani Submit Form Review Baru
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewerName').value;
+            const rating = parseInt(document.getElementById('reviewerRating').value);
+            const comment = document.getElementById('reviewerComment').value;
+
+            const newReview = { name, rating, comment, date: new Date().toISOString() };
+            
+            const existingReviews = JSON.parse(localStorage.getItem(storageKey)) || [];
+            existingReviews.unshift(newReview); // Tambah ke baris paling atas
+
+            localStorage.setItem(storageKey, JSON.stringify(existingReviews));
+            
+            // Reset Form & Update Tampilan
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewerComment').value = '';
+            loadReviews();
+        });
+
+        // Jalankan fungsi load data saat halaman dibuka
+        window.onload = loadReviews;
+    </script>
+</body>
+</html>

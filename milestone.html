@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineverse | Milestone</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. INITIAL SETTINGS & CYBER DESIGN SYSTEM --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-dark: #030303;
+            --bg-card: rgba(11, 11, 15, 0.65);
+            --bg-card-hover: rgba(17, 17, 22, 0.8);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --text-link: rgba(255, 255, 255, 0.6);
+            --mineverse-blue: #34E6E6;
+            --mineverse-glow: rgba(52, 230, 230, 0.12);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(52, 230, 230, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-top: 120px;
+            
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* Reveal Animation System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cursor Particle Effect */
+        .cursor-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background-color: var(--mineverse-blue);
+            box-shadow: 0 0 8px var(--mineverse-blue);
+            border-radius: 50%; 
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            animation: particle-fade 0.5s ease-out forwards;
+        }
+
+        @keyframes particle-fade {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
+        }
+
+        /* --- 2. PREMIUM HEADER NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(3, 3, 3, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 25%;
+            width: 50%;
+            height: 120px;
+            background: radial-gradient(ellipse at center, var(--mineverse-glow) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-link);
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--text-main);
+        }
+
+        .nav-btn {
+            background: var(--mineverse-blue);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 230, 230, 0.2);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(52, 230, 230, 0.4);
+        }
+
+        /* --- 3. REUSABLE TAG SYSTEM --- */
+        .milestone-tag {
+            background-color: rgba(52, 230, 230, 0.05);
+            border: 1px solid rgba(52, 230, 230, 0.15);
+            color: var(--mineverse-blue);
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        /* --- 4. PAGE MAIN LAYOUT --- */
+        .milestone-container {
+            padding: 40px 8% 80px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .milestone-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .milestone-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .milestone-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* --- 5. RESPONSIVE GRID LAYOUT SYSTEM --- */
+        .milestone-tab-wrapper {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .tab-small-card {
+            grid-column: 1;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid transparent; 
+            border-radius: 16px;
+            padding: 22px 24px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tab-small-card:hover {
+            border-color: var(--border-hover);
+            background-color: var(--bg-card-hover);
+        }
+
+        .tab-small-card.active-tab {
+            background-color: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            border-left: 3px solid var(--mineverse-blue);
+            box-shadow: 0 10px 30px rgba(52, 230, 230, 0.03);
+        }
+
+        .tab-small-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tab-small-card .tab-date {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .tab-small-card.active-tab .tab-date,
+        .tab-small-card:hover .tab-date {
+            color: var(--mineverse-blue);
+        }
+
+        .tab-small-badge {
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .tab-small-card.active-tab .tab-small-badge {
+            background: rgba(52, 230, 230, 0.1);
+            color: var(--mineverse-blue);
+        }
+
+        .tab-small-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+        }
+
+        .tab-small-card .tab-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .content-panel {
+            grid-column: 2;
+            grid-row: 1 / span 10; 
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            display: none; 
+            flex-direction: column;
+            gap: 25px;
+            animation: fadeInTab 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .content-panel:hover {
+            border-color: var(--border-hover);
+            background-color: var(--bg-card-hover);
+        }
+
+        .content-panel.active-panel {
+            display: flex;
+        }
+
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 6. DETAIL PANEL COMPONENTS --- */
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Box Logo Pin Milestone */
+        .panel-logo-box {
+            width: 56px;
+            height: 56px;
+            background: rgba(52, 230, 230, 0.05);
+            border: 1px solid rgba(52, 230, 230, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(52, 230, 230, 0.05);
+        }
+
+        .panel-logo-box svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--mineverse-blue);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .panel-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .panel-header-info h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        /* Metadata Inline (Hanya Tanggal) */
+        .panel-meta-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .panel-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .panel-meta-item svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--mineverse-blue);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Deskripsi Utama */
+        .panel-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Bagian List Achievement */
+        .panel-achievements-wrapper {
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .achievements-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .achievement-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .achievement-item {
+            position: relative;
+            padding-left: 20px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--mineverse-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--mineverse-blue);
+        }
+
+        /* --- 7. MULTI-COLUMN FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 80px 8% 40px 8%;
+            background-color: #030303;
+            position: relative;
+            z-index: 2;
+            margin-top: 120px;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand-side {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .footer-logo span {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-brand-side p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-col ul li a::before {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 2px;
+            background-color: var(--mineverse-blue);
+            box-shadow: 0 0 6px var(--mineverse-blue);
+            transition: width 0.25s ease, margin-right 0.25s ease;
+            margin-right: 0;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-col ul li a:hover::before {
+            width: 12px; 
+            margin-right: 8px; 
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom-bar .copyright-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-owner-credit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-owner-credit .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--mineverse-blue);
+            box-shadow: 0 0 6px var(--mineverse-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .giant-footer-bg-text {
+            width: 100%;
+            text-align: center;
+            font-size: 11vw;
+            font-weight: 800;
+            letter-spacing: -0.5vw;
+            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+            pointer-events: none;
+            line-height: 1;
+            margin-top: 20px;
+        }
+
+        /* --- 8. MEDIA QUERIES (RESPONSIVE VIEWPORT MOBILE) --- */
+        @media (max-width: 1024px) {
+            .footer-main-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 16px 5%; }
+            nav, .nav-btn { display: none; } 
+            body { padding-top: 100px; }
+            
+            .milestone-container { padding: 20px 5% 40px 5%; }
+            .milestone-header h1 { font-size: 32px; }
+            .milestone-header p { font-size: 14px; }
+            
+            .milestone-tab-wrapper { 
+                grid-template-columns: 1fr; 
+                gap: 16px; 
+            }
+
+            .tab-small-card {
+                grid-column: auto;
+            }
+
+            .content-panel {
+                grid-column: auto;
+                grid-row: auto;
+                border-radius: 16px;
+                padding: 24px;
+                margin-top: -8px; 
+                margin-bottom: 8px;
+            }
+
+            .panel-header {
+                gap: 14px;
+            }
+
+            .panel-logo-box {
+                width: 48px;
+                height: 48px;
+            }
+
+            .panel-logo-box svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .panel-header-info h2 {
+                font-size: 18px;
+            }
+
+            .panel-meta-list {
+                gap: 8px 12px;
+            }
+
+            .panel-meta-item {
+                font-size: 12px;
+            }
+            
+            .footer-main-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER NAVBAR -->
+    <header>
+        <a href="index.html#home" class="logo-container">
+            <img src="NEW PROFILE MINEVERSE.png" alt="" class="logo-img">
+            <div class="logo-text">Mineverse</div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about" class="active">About</a></li>
+                <li><a href="index.html#branch">Branch</a></li>
+                <li><a href="index.html#member">Member</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="#connect-footer">Connect</a></li>
+            </ul>
+        </nav>
+        <a href="#connect-footer" class="nav-btn">Get Started</a>
+    </header>
+
+    <main class="milestone-container">
+
+        <div class="milestone-header reveal">
+            <div class="milestone-tag">Milestone</div>
+            <h1>Perjalanan Kami</h1>
+            <p>Melihat kembali jejak langkah, pertumbuhan, dan pencapaian besar yang telah diukir oleh komunitas Mineverse dari tahun ke tahun.</p>
+        </div>
+
+        <div class="milestone-tab-wrapper reveal">
+            
+            <!-- ITEM 1: BRUTAL COMMUNITY -->
+            <div id="tab-brucom" class="tab-small-card active-tab" onclick="openMilestone('brucom')">
+                <div class="tab-small-meta">
+                    <span class="tab-date">15 Des 2023</span>
+                    <span class="tab-small-badge">Pre-Launch</span>
+                </div>
+                <h3>Brutal Community</h3>
+                <span class="tab-subtitle">Cikal Bakal Gerakan</span>
+            </div>
+            
+            <div id="brucom" class="content-panel active-panel">
+                <div class="panel-header">
+                    <div class="panel-logo-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="panel-header-info">
+                        <h2>Pembentukan Brutal Community</h2>
+                        <div class="panel-meta-list">
+                            <div class="panel-meta-item">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                15 Desember 2023
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="panel-desc">Sebelum Mineverse dibentuk, cikal bakal pergerakan dimulai dari Brutal Community. Sebuah wadah awal bereksperimen mengumpulkan gagasan kreatif lintas jaringan demi menyatukan talenta digital lokal.</p>
+                <div class="panel-achievements-wrapper">
+                    <span class="achievements-title">Achievements</span>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">Merumuskan cetak biru awal visi komunitas jangka panjang.</li>
+                        <li class="achievement-item">Mengumpulkan pendiri & kontributor inti lintas bidang.</li>
+                        <li class="achievement-item">Melakukan eksperimen networking awal skala kecil.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- ITEM 2: AWAL TERBENTUK -->
+            <div id="tab-m-2024" class="tab-small-card" onclick="openMilestone('m-2024')">
+                <div class="tab-small-meta">
+                    <span class="tab-date">15 Apr 2024</span>
+                    <span class="tab-small-badge">Fase Fondasi</span>
+                </div>
+                <h3>Awal Terbentuk</h3>
+                <span class="tab-subtitle">Peletakan Batu Pertama</span>
+            </div>
+
+            <div id="m-2024" class="content-panel">
+                <div class="panel-header">
+                    <div class="panel-logo-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="panel-header-info">
+                        <h2>Peletakan Batu Pertama & Komunitas Inti</h2>
+                        <div class="panel-meta-list">
+                            <div class="panel-meta-item">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                15 April 2024
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="panel-desc">Mineverse resmi didirikan sebagai ruang lingkup kecil lingkup lokal untuk menyatukan ide-ide kreatif beberapa kreator dan gamer. Pada fase awal ini, fokus utama kami adalah membangun fondasi pergerakan awal komunitas global.</p>
+                <div class="panel-achievements-wrapper">
+                    <span class="achievements-title">Achievements</span>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">Membangun infrastruktur server dasar yang kokoh.</li>
+                        <li class="achievement-item">Merancang logo identitas utama Mineverse.</li>
+                        <li class="achievement-item">Mengumpulkan 500 anggota pertama sebagai fondasi awal.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- ITEM 3: FASE KOLABORASI -->
+            <div id="tab-m-2025" class="tab-small-card" onclick="openMilestone('m-2025')">
+                <div class="tab-small-meta">
+                    <span class="tab-date">Tahun 2025</span>
+                    <span class="tab-small-badge">Ekspansi</span>
+                </div>
+                <h3>Fase Kolaborasi</h3>
+                <span class="tab-subtitle">Pembentukan Branch Wilayah</span>
+            </div>
+
+            <div id="m-2025" class="content-panel">
+                <div class="panel-header">
+                    <div class="panel-logo-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="panel-header-info">
+                        <h2>Pembentukan Branch Wilayah & Partnership</h2>
+                        <div class="panel-meta-list">
+                            <div class="panel-meta-item">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                Periode 2025
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="panel-desc">Memasuki tahun kedua, pertumbuhan melonjak pesat secara organik. Kami mengadopsi struktur tata kelola baru dengan meluncurkan sistem "Branches" regional resmi untuk membagi dan mendesentralisasi kegiatan komunitas secara efektif.</p>
+                <div class="panel-achievements-wrapper">
+                    <span class="achievements-title">Achievements</span>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">Meluncurkan sistem "Branches" regional resmi (Alpha, Beta, Omega).</li>
+                        <li class="achievement-item">Menandatangani kemitraan strategis dengan lebih dari 20 studio eksternal.</li>
+                        <li class="achievement-item">Melipatgandakan basis keanggotaan aktif hingga menembus ribuan pengguna terdaftar.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- ITEM 4: FASE INOVASI DIGITAL -->
+            <div id="tab-m-2026" class="tab-small-card" onclick="openMilestone('m-2026')">
+                <div class="tab-small-meta">
+                    <span class="tab-date">Era Modern</span>
+                    <span class="tab-small-badge">Sinkronisasi</span>
+                </div>
+                <h3>Fase Inovasi Digital</h3>
+                <span class="tab-subtitle">Ekosistem Web Portal</span>
+            </div>
+
+            <div id="m-2026" class="content-panel">
+                <div class="panel-header">
+                    <div class="panel-logo-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="panel-header-info">
+                        <h2>Ekosistem Web Portal & Sinkronisasi Global</h2>
+                        <div class="panel-meta-list">
+                            <div class="panel-meta-item">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                Periode 2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="panel-desc">Tahun standarisasi modern inovasi digital penuh. Mineverse bertransformasi dari sekadar platform server komunitas biasa menjadi ekosistem hybrid terintegrasi penuh untuk mendukung mobilitas tinggi seluruh anggota secara real-time.</p>
+                <div class="panel-achievements-wrapper">
+                    <span class="achievements-title">Achievements</span>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">Meluncurkan antarmuka web portal responsif berteknologi tinggi.</li>
+                        <li class="achievement-item">Mengimplementasikan sistem pelacakan otomatis ID Card digital resmi.</li>
+                        <li class="achievement-item">Memperluas jangkauan proyek kolaborasi kreatif lintas platform berskala nasional.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+     </main>
+
+    <!-- METROPOLIS MULTI-COLUMN FOOTER -->
+     <footer id="connect-footer">
+        <div class="footer-main-grid reveal">
+            <div class="footer-brand-side">
+                <a href="#home" class="footer-logo">
+                    <img src="NEW PROFILE MINEVERSE.png" alt="">
+                    <span>Mineverse</span>
+                </a>
+                <p>A next-generation digital Minecraft ecosystem infrastructure designed specifically for creative people who need a platform to create.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Social Media</h4>
+                <ul>
+                    <li><a href="https://www.youtube.com/@Mineverse.c">YouTube</a></li>
+                    <li><a href="https://www.instagram.com/mineverse_official/">Instagram</a></li>
+                    <li><a href="https://discord.gg/m8FVYTqZN">Discord</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Document</h4>
+                <ul>
+                    <li><a href="#">Branding</a></li>
+                    <li><a href="#about">Milestone</a></li>
+                    <li><a href="mailto:mineversepersonal@gmail.com">Email</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="https://saweria.co/mineverseid">Saweria</a></li>
+                    <li><a href="#member">Partnership</a></li>
+                    <li><a href="#member">Propose Idea</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom-bar reveal">
+            <div class="copyright-text">&copy; 2026 Mineverse Portal. All Rights Reserved.</div>
+            
+            <div class="footer-owner-credit">
+                <span class="dot"></span>
+                <span>Alzena - Owner & Founder Mineverse</span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <div class="giant-footer-bg-text reveal">Mineverse</div>
+    </footer>
+
+    <script>
+        function openMilestone(milestoneId) {
+            const contentPanels = document.getElementsByClassName("content-panel");
+            for (let i = 0; i < contentPanels.length; i++) {
+                contentPanels[i].classList.remove("active-panel");
+            }
+
+            const tabCards = document.getElementsByClassName("tab-small-card");
+            for (let i = 0; i < tabCards.length; i++) {
+                tabCards[i].classList.remove("active-tab");
+            }
+
+            document.getElementById(milestoneId).classList.add("active-panel");
+            document.getElementById("tab-" + milestoneId).classList.add("active-tab");
+            
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    document.getElementById(milestoneId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.15) { 
+                const particle = document.createElement('div');
+                particle.classList.add('cursor-particle');
+                
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                
+                const size = Math.random() * 5 + 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
